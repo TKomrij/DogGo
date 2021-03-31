@@ -106,7 +106,6 @@ namespace DogGo.Repositories
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
-
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
@@ -133,9 +132,11 @@ namespace DogGo.Repositories
                         reader.Close();
                         return owner;
                     }
-
-                    reader.Close();
-                    return null;
+                    else
+                    {
+                        reader.Close();
+                        return null;
+                    }
                 }
             }
         }
